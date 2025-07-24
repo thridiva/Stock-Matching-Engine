@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade History - {{ symbol }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Trade History for {{ symbol }}</h1>
+
+        <table id="trades-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Buy Order ID</th>
+                    <th>Sell Order ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be loaded by JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="price-chart">
+            <h2>Trade Price Chart</h2>
+            <canvas id="price-chart"></canvas>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn">Back to Order Form</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Store the symbol for use in JavaScript
+        const symbol = "{{ symbol }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

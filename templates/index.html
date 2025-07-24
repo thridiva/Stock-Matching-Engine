@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Matching System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Stock Market Order Matching System</h1>
+
+      <div class="order-form">
+        <h2>Place New Order</h2>
+        <form action="{{ url_for('place_order') }}" method="post">
+          <div class="form-group">
+            <label for="symbol">Symbol:</label>
+            <input
+              type="text"
+              id="symbol"
+              name="symbol"
+              required
+              placeholder="e.g., AAPL"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="order_type">Order Type:</label>
+            <select id="order_type" name="order_type" required>
+              <option value="BUY">BUY</option>
+              <option value="SELL">SELL</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="order_variant">Order Variant:</label>
+            <select id="order_variant" name="order_variant" required>
+              <option value="LIMIT">LIMIT</option>
+              <option value="MARKET">MARKET</option>
+              <option value="IOC">IOC (Immediate or Cancel)</option>
+              <option value="FOK">FOK (Fill or Kill)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="price-group">
+            <label for="price">Price:</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              step="0.01"
+              min="0"
+              required
+              placeholder="e.g., 100.50"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              required
+              placeholder="e.g., 10"
+            />
+          </div>
+
+          <button type="submit" class="btn">Place Order</button>
+        </form>
+      </div>
+
+      <div class="view-section">
+        <h2>View Order Books</h2>
+        <form action="{{ url_for('view_orderbook') }}" method="post">
+          <div class="form-group">
+            <label for="view-symbol">Symbol:</label>
+            <input
+              type="text"
+              id="view-symbol"
+              name="view_symbol"
+              required
+              placeholder="e.g., AAPL"
+            />
+          </div>
+          <button type="submit" class="btn">View Order Book</button>
+        </form>
+      </div>
+
+      <div class="reset-section">
+        <h2>Reset System</h2>
+        <form action="{{ url_for('reset_orderbook') }}" method="post">
+          <button type="submit" class="btn btn-danger">Reset Order Book</button>
+        </form>
+        <p><small>This will clear all orders and trades.</small></p>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

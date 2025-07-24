@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+
+# C++
+*.o
+*.out
+
+# Temporary files
+*.log
+*.tmp
+
+# Compiled C++ executable
+cpp_src/orderbook
+
+# State files
+cpp_src/orderbook_state.dat

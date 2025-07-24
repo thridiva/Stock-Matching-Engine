@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Results - {{ symbol }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Order Results for {{ symbol }}</h1>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="orderbook">Order Book</button>
+            <button class="tab" data-tab="trades">Trade History</button>
+        </div>
+
+        <div class="tab-content">
+            <div id="orderbook" class="tab-pane active">
+                <h2>Order Book</h2>
+                <div class="orderbook-container">
+                    <div class="buy-orders">
+                        <h3>Buy Orders</h3>
+                        <table id="buy-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="sell-orders">
+                        <h3>Sell Orders</h3>
+                        <table id="sell-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be loaded by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="price-chart">
+                    <h3>Price Depth Chart</h3>
+                    <canvas id="depth-chart"></canvas>
+                </div>
+            </div>
+
+            <div id="trades" class="tab-pane">
+                <h2>Trade History</h2>
+                <table id="trades-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Buy Order ID</th>
+                            <th>Sell Order ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be loaded by JavaScript -->
+                    </tbody>
+                </table>
+
+                <div class="price-chart">
+                    <h3>Trade Price Chart</h3>
+                    <canvas id="price-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn">Place Another Order</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Store the symbol for use in JavaScript
+        const symbol = "{{ symbol }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
